@@ -1,14 +1,27 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import Router from 'components/Router';
 import { authService } from '../fbase'
 
 const App = () => {
-  console.log(authService.currentUser)
-  const [ isLoggedIn, setIsLoggedIn ] = useState(authService.currentUser)
+  const [init, setInit] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser)
+
+  useEffect(() => {
+    authService.onAuthStateChanged(user => {
+      if (user) {
+        setIsLoggedIn(true)
+      } else {
+        setIsLoggedIn(false)
+      }
+
+      setInit(true)
+    })
+  })
 
   return (
     <Fragment>
-      <Router isLoggedIn={isLoggedIn} />
+      {init ? <Router isLoggedIn={isLoggedIn}/> : 'initializing'}
+
       <footer>&copy; NWitter {new Date().getFullYear()}</footer>
     </Fragment>
   )
