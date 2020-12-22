@@ -39,7 +39,7 @@ const Nweet = ({ nweetObj, isOwner }) => {
                 onChange={onChange}
                 required
               />
-              <input type={'submit'} value={'Edit'} />
+              <input type={'submit'} value={'Edit'}/>
             </form>
             <button onClick={toggleEditing}>Cancel</button>
           </>
