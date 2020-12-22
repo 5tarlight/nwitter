@@ -20,7 +20,7 @@ const App = () => {
     <Fragment>
       {init ? <Router isLoggedIn={Boolean(userObj)} userObj={userObj} /> : 'initializing'}
 
-      <footer>&copy; NWitter {new Date().getFullYear()}</footer>
+      {/*<footer>&copy; NWitter {new Date().getFullYear()}</footer>*/}
     </Fragment>
   )
 }
